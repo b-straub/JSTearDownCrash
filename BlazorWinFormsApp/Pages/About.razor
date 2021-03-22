@@ -1,0 +1,37 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudCard>
+            <MudCardContent>
+                <MudText Typo="Typo.subtitle2">JSDearDownCrash</MudText>
+                <MudGrid>
+                    <MudItem>
+                        <MudIcon Class="align-center justify-center my-3" Icon="@Icons.Material.Filled.Copyright" />
+                    </MudItem>
+                    <MudItem>
+                        <MudText Class="align-center justify-center my-3">2021 bs</MudText>
+                    </MudItem>
+                </MudGrid>
+            </MudCardContent>
+        </MudCard>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance? MudDialog { get; set; }
+
+    void Submit() => MudDialog?.Close(DialogResult.Ok(true));
+
+    protected override void OnInitialized()
+    {
+        if (MudDialog is not null)
+        {
+            MudDialog.Options.CloseButton = false;
+            MudDialog.SetOptions(MudDialog.Options);
+        }
+
+        base.OnInitialized();
+    }
+}

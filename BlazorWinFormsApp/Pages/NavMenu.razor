@@ -1,0 +1,30 @@
+﻿ @inject IDialogService Dialog
+
+<MudAppBar Class="d-print-none" Elevation="1">
+    <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+    <MudAppBarSpacer />
+    <MudIconButton Icon="@Icons.Material.Filled.Person" Color="Color.Inherit" OnClick="@OpenAboutDialog" />
+</MudAppBar>
+<MudDrawer Class="d-print-none" @bind-Open="@open" Elevation="1">
+    <MudDrawerHeader>
+        <MudText Typo="Typo.h6">JSDearDownCrash</MudText>
+    </MudDrawerHeader>
+    <MudNavMenu>
+        <MudNavLink Href="/" Match="NavLinkMatch.All">Page 1</MudNavLink>
+        <MudNavLink Href="/page2">Page 2</MudNavLink>
+    </MudNavMenu>
+</MudDrawer>
+
+@code {
+    private bool open = false;
+
+    private void ToggleDrawer()
+    {
+        open = !open;
+    }
+
+    private void OpenAboutDialog()
+    {
+        Dialog?.Show<About>("About JSDearDownCrash");
+    }
+}
